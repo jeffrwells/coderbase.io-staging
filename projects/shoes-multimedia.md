@@ -5,7 +5,7 @@ description: Programs created to parse specified multimedia inputs, encode into 
 homepage: 
 languages: [ruby]
 visible: true
-order: 
+order: 10
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---
@@ -14,7 +14,7 @@ order:
 CSE408 Multimedia Information Systems
 Project 1.
 
-By Jeff Wells and Corey Jallen
+By Jeff Wells
 
 
 To run this program:

@@ -5,7 +5,7 @@ description: SaaS fraternity recruitment software
 homepage: http://www.greekslide.com
 languages: [ruby]
 visible: true
-order: 
+order: 4
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---

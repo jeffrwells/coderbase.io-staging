@@ -4,8 +4,8 @@ permalink: coderbase
 description: A portfolio & blogging platform for developers powered by git and markdown
 homepage: http://coderbase.io
 languages: [ruby]
-visible: false
-order: 
+visible: true
+order: 1
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---

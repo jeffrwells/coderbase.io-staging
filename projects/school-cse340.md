@@ -5,7 +5,7 @@ description: Homework for a design of programming languages class. Very specific
 homepage: 
 languages: [c]
 visible: true
-order: 
+order: 6
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---

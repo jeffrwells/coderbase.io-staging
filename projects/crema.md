@@ -5,7 +5,7 @@ description: First iOS application. Uses Foursquare API and crowdsourcing to sho
 homepage: 
 languages: [objectivec]
 visible: true
-order: 
+order: 2
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---

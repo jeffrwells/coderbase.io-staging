@@ -5,7 +5,7 @@ description: Easily add before and after callbacks to ruby methods with blocks.
 homepage: 
 languages: [ruby]
 visible: true
-order: 
+order: 3
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
 ---
