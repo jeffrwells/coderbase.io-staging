@@ -39,6 +39,6 @@ Domain:
 # By default the posts tab is selected. You can input:
 # 'posts', 'projects', or 'about'
 
-Homepage: about
+Homepage: posts
 
 
