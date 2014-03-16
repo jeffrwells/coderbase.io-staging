@@ -2,7 +2,7 @@
 title: Shoes Multimedia
 permalink: shoes-multimedia
 description: Programs created to parse specified multimedia inputs, encode into bitstream and decode. Built in Ruby and Shoes. For CSE408
-homepage: 
+homepage:
 languages: [ruby]
 visible: true
 order: 10
