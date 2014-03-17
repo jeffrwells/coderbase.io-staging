@@ -3,7 +3,7 @@ permalink: complex-routing-in-rails
 title: Complex routing in Rails
 languages:
 summary: Forwarding an contraint matching in rails routing.
-published: true 
+published: true
 ---
 
 Working on the Coderbase.io platform, I wanted to make my resource urls as primary as possible, and avoid namespacing with /posts or /projects. This was an important design decision for us. Our system is controlled through a git repository that we create for the user, and posts are written in markdown.
@@ -22,7 +22,7 @@ Our file structure was like this:
       _config.yml
       post-without-a-project.md
       another-post-without-a-project.md
-  
+
 The concept is that posts describe projects. Rather than sitting down and writing about your projects in detail, you write small posts as you go along.
 
 
@@ -82,7 +82,7 @@ Constraints are created with a class instance that responds to `matches?`. These
     end
 
 Now that we have the contraints we update the routes:
-  
+
     scope '/:username' do
       get '/:permalink', to: 'profile#project', constraints: ProjectExistsConstraint.new
       get '/:permalink', to: 'profile#post', constraints: PostExistsConstraint.new
@@ -95,11 +95,11 @@ You may want to use `find_by` instead of `exists?` in the constraints. The model
 
 ## 2. Forwarding urls through the routes
 
-Now we need to deal with our second complication. A user has seen multiple posts at 
+Now we need to deal with our second complication. A user has seen multiple posts at
 
     /username/post-name
 
-and wants to read *post-about-project1* and types in 
+and wants to read *post-about-project1* and types in
 
     /username/post-about-project1
 
