@@ -14,8 +14,8 @@ Crema is my first iPhone application. I built it to be able to find the best loc
 
 It is still in progress but I plan to release it to the App Store. See the code on GitHub.
 
-![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/loadingscreen.png)
+![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/loadingscreen.png)
 
-![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/map.png)
+![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/map.png)
 
-![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/search.png)
+![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/search.png)
