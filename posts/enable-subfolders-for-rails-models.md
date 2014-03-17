@@ -2,7 +2,7 @@
 permalink: enable-subfolders-for-rails-models
 title: Enable subfolders for Rails models
 languages: ruby, rails
-published: true
+published: false
 summary: Use subfolders in your Rails models directory for better organization
 ---
 

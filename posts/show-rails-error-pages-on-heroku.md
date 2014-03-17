@@ -2,9 +2,7 @@
 permalink: show-rails-error-pages-on-heroku
 title: Show rails error pages on heroku
 languages: ruby, rails
-[
-
-published: true
+published: false
 summary: Pre-launch it can be useful to show error pages on Heroku so you can debug production issues.
 ---
 
