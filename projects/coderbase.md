@@ -10,7 +10,7 @@ order: 1
 
 # Summary
 
-*Note: This project is very much a work in progress. You are looking at it right now.*
+*Note: This project is very much a work in progress. This portfolio was created on, and is hosted by, Coderbase.io.*
 
 Coderbase.io is a portfolio platform for developers. It seeks to create the ideal online identity for developers. It combines blog-style posts, projects that contain annotations -- such as what you are reading right now -- and basic pages.
 
@@ -40,7 +40,7 @@ These files can now be edited any way that our users want. For quick changes, us
 ![Editing in Atom](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/coderbase/editing-in-atom.png)
 
 
-Using markdown and a custom repository has huge advantages. You can see in the photo above that I created a photos folder to host my photos. Since we only parse the files that are properly named (*.md* files in posts or projects folder, _config.yml, etc.), I can put photos, notes, or other files in the repository if I would like.
+Using markdown and a custom repository has huge advantages. You can see in the photo above that I created a photos folder to host my photos. Since we only parse the files that are properly named (.md files in posts or projects folder, _config.yml, etc.), I can put photos, notes, or other files in the repository if I would like.
 
 As a developer, it is very easy for me to paste in code I want to show off. For example, here is how this file is formatted with YAMl at the top of this file:  
 
@@ -54,7 +54,7 @@ As a developer, it is very easy for me to paste in code I want to show off. For 
     order: 1
     ---
 
-And here is my _config.yml file where I keep my settings:
+Settings are saved in a single YAML file: `_config.yml`. Here is mine, pasted in:
 
     # Your name to be displayed on your profile
 
