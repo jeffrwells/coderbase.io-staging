@@ -6,7 +6,7 @@ focuses: []
 
 > Make an impact in the world.
 
-I learned to code less than two years ago. I learned by building a SaaS product that assists with recruitment in college fraternities and sororities. Check out the [greekslide project](http://jeffrwells.com/projects/greekslide). Within 6 months, I sold this software to a number of fraternity chapters around the country but have since shut it down.
+I learned to code less than two years ago but have come a long way. I learned by building a SaaS product that assists with recruitment in college fraternities and sororities. Check out the [greekslide project](http://jeffrwells.com/projects/greekslide). Within 6 months, I sold this software to a number of fraternity chapters around the country but have since shut it down.
 
 I also founded a 501(c)3 nonprofit called [Arizona Microcredit Initiative](http://azmicrocredit.org) (AMI) my sophomore year of college. See these articles in the [Arizona Republic](http://www.azcentral.com/business/abg/articles/20140129students-fuel-businesses.html) and [State Press](http://www.statepress.com/2014/02/12/honors-students-nonprofit-program-arizona-microcredit-initiative-reaches-new-success/).
 
