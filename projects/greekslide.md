@@ -33,7 +33,8 @@ Actives discuss potential new members in a feed, where they see all of the recen
 Actives can open up the Quick Rushee Signup page while at a rush event and have potential new members quickly sign up using Facebook. They get their name, profile photo, email address and phone number to contact them quickly and easily. Later, the new guys can log in to fill out more information about themselves.
 
 
-## Potential new member profile ![](http://greekslide.com/assets/profile_c-fc55620e08e80c911412958dbdcbb053.jpg)
+## Potential new member profile
+![](http://greekslide.com/assets/profile_c-fc55620e08e80c911412958dbdcbb053.jpg)
 
 Potential new members fill out information about themselves for actives to see. They get the opportunity to put their best foot forward and use a great photo. That way everyone gets a fair chance to see and be seen.
 
