@@ -102,4 +102,8 @@ And here is my _config.yml file where I keep my settings:
 
 Also, everything is under version control without needing a service like PenFlip. Some of our users will use GitHub's pre-existing tools to Pull Request a typo fix for another user. Awesome!
 
-Writing in the text editor in Markdown takes a little getting used to, but is very productive once you get the hang of it. All of this was designed to work well for developers and make the process of creating a portfolio as smooth as possible.
+Writing in the text editor in Markdown takes a little getting used to, but is very productive once you get the hang of it. It allows our users to focus on content and showing their abilities -- not getting bogged down with *design** or setup. All of this was created to work well for developers and make the process of creating a portfolio as smooth as possible.
+
+**In general, developers are not excellent designers. For those that are, they are best off making their own portfolio from scratch to showcase their skills in this area. Coderbase allows non-designers to have a well designed portfolio out of the box.*
+
+If you haven't already, you need to [try it out](https://coderbase.io). To see your changes instantly deployed from the command line is awesome!
