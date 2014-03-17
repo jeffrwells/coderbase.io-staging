@@ -18,6 +18,4 @@ During my 12 weeks as an intern at New Relic, I became lead developer and projec
 
 At Recruiting.com I worked in JavaScript and Backbone.js to build a recruitment platform for sourcing and managing candidates. I created a mechanism inspired by Rails Turbolinks to load in new pages. The pages used an ASP backend to start JavaScript applications, and were very slow to load as a result. My new feature brought load time from ~4 seconds (really bad!) to ~1 second (not as bad, and usable).
 
-I am graduating with a Computer Science degree in the Spring of 2014.
-
-When I'm not programming, I cook, do crossfit, and drink espresso and craft IPAs. I'm from Portland, Oregon.
+I am graduating with a Computer Science degree in the Spring of 2014. I'm from Portland, Oregon.
