@@ -4,7 +4,7 @@ permalink: shoes-multimedia
 description: Programs created to parse specified multimedia inputs, encode into bitstream and decode. Built in Ruby and Shoes. For CSE408
 homepage:
 languages: [ruby]
-visible: true
+visible: false
 order: 10
 # Github Flavored Markdown reference
 # https://help.github.com/articles/github-flavored-markdown
