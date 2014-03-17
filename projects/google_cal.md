@@ -1,6 +1,6 @@
 ---
-title: Hero Calendar
-permalink: google_cal
+title: Hero Scheduler
+permalink: hero-scheduler
 description: A tool for scheduling rotating shifts on Google Calendar for teams
 homepage:
 languages: [javascript]
