@@ -8,8 +8,6 @@ visible: true
 order: 1
 ---
 
-# Summary
-
 *Note: This project is very much a work in progress. This portfolio was created on, and is hosted by, Coderbase.io.*
 
 Coderbase.io is a portfolio platform for developers. It seeks to create the ideal online identity for developers. It combines blog-style posts, projects that contain annotations -- such as what you are reading right now -- and basic pages.
