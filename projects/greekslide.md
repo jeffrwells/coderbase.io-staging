@@ -23,25 +23,25 @@ I was able to sell this software as a subscription to multiple fraternity chapte
 *You can see these descriptions and photos in the tour at [http://www.greekslide.com/tour](http://www.greekslide.com/tour).*
 
 ## All discussions in one place
-![](http://greekslide.com/assets/stream_c-0c408ccadb647c1347b2e651852c5e02.jpg)
 > Actives discuss potential new members in a feed, where they see all of the recent conversations in one place. Actives are engaged and make an effort to discuss the new guys. Each comment has a sentiment attached to quickly understand the chapter's thoughts on a rushee. Thumbs up, thumbs down, or needs more discussion
+![](http://greekslide.com/assets/stream_c-0c408ccadb647c1347b2e651852c5e02.jpg)
 
 
 ## Quick signup for new members
-![](http://greekslide.com/assets/quick_c-b4e22e8c1e0285f4855b06aed6a52099.jpg)
 > Actives can open up the Quick Rushee Signup page while at a rush event and have potential new members quickly sign up using Facebook. They get their name, profile photo, email address and phone number to contact them quickly and easily. Later, the new guys can log in to fill out more information about themselves.
+![](http://greekslide.com/assets/quick_c-b4e22e8c1e0285f4855b06aed6a52099.jpg)
 
 
 ## Potential new member profile ![](http://greekslide.com/assets/profile_c-fc55620e08e80c911412958dbdcbb053.jpg)
 > Potential new members fill out information about themselves for actives to see. They get the opportunity to put their best foot forward and use a great photo. That way everyone gets a fair chance to see and be seen.
 
 ## New member lists
-![](http://greekslide.com/assets/rush_c-a1e5f7a3c32d2f3cb7d7d1dd4519d6ac.jpg)
 > Drag and drop potential new members to organize them into pref and bid lists. Each of these lists can be downloaded as excel files with all of the new members' information. There is a slideshow for each category as described below.
+![](http://greekslide.com/assets/rush_c-a1e5f7a3c32d2f3cb7d7d1dd4519d6ac.jpg)
 
 ## Slideshow
-![](http://greekslide.com/assets/slideshow_c-e798f24f1dc13ed467125bd5e288cfae.jpg)
 > The slideshow allows active members to step through each rushee and view all of his information as well as answers to questions. They can read the comments of other actives and learn more about potential new members they haven't yet had the chance to meet at rush events. The chapter admin uses the slidshow on vote night. They simply click the star to change his status from 'Preferred' to 'Bid'. After the vote is over, they can download the bid list to send in to their school.
+![](http://greekslide.com/assets/slideshow_c-e798f24f1dc13ed467125bd5e288cfae.jpg)
 
 
 
