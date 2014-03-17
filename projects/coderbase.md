@@ -27,6 +27,7 @@ To attack this problem my team and I wanted to create a platform that allowed de
 
 We hope to replace a resume, blog, and GitHub profile with one single portfolio accessible by a custom domain name: (eg jeffrwells.com). The portfolio is well designed and minimally featured to make it easier to use and more attractive than any other service or custom-built solution.
 
+
 # How it works
 
 Coderbase.io is built for developers, and is designed to work in tune with a developer's typical workflow. We recognized early on that
@@ -107,3 +108,8 @@ Writing in the text editor in Markdown takes a little getting used to, but is ve
 In general, developers are not excellent designers. For those that are, they are best off making their own portfolio from scratch to showcase their skills in this area. Coderbase allows non-designers to have a well designed portfolio out of the box.
 
 If you haven't already, you need to [try it out](https://coderbase.io). To see your changes instantly deployed from the command line is awesome!
+
+
+# The Code
+
+The code for this platform is hosted in a private repository, but here I will highlight some of the code I am proud of.
