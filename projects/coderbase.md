@@ -6,7 +6,6 @@ homepage: http://coderbase.io
 languages: [ruby, rails]
 visible: true
 order: 1
-
 ---
 
 # Summary
@@ -32,19 +31,75 @@ We hope to replace a resume, blog, and GitHub profile with one single portfolio 
 
 Coderbase.io is built for developers, and is designed to work in tune with a developer's typical workflow. We recognized early on that
 
-When a user signs up through his/her GitHub account, a new repository called *coderbase.io* is created that hosts all of the portfolio's posts, projects, and configurations in markdown and YAML files.
+When a user signs up through his/her GitHub account, a new repository called *coderbase.io* is created that hosts all of the portfolio's posts, projects, and configurations in markdown and YAML files. When the repository is modified and pushed to GitHub, a commit hook sends the changes over to us and we parse it to manage the portfolio.
 
-![Newly created GitHub Repository](/path/to/img.jpg)
+![Newly created GitHub Repository](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/coderbase/coderbase-github-repo.png)
 
 These files can now be edited any way that our users want. For quick changes, using the GitHub editor is often easiest. Users can also pull down the repository to edit it in their text editor or a special markdown program. Here you can see me writing these words (so meta) in Atom:
 
-![Editing in Atom](/path/to/img.jpg)
+![Editing in Atom](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/coderbase/editing-in-atom.png)
 
 
+Using markdown and a custom repository has huge advantages. You can see in the photo above that I created a photos folder to host my photos. Since we only parse the files that are properly named (*.md* files in posts or projects folder, _config.yml, etc.), I can put photos, notes, or other files in the repository if I would like.
+
+As a developer, it is very easy for me to paste in code I want to show off. For example, here is how this file is formatted with YAMl at the top of this file:  
+
+    ---
+    title: Coderbase
+    permalink: coderbase
+    description: A portfolio & blogging platform for developers powered by git and markdown
+    homepage: http://coderbase.io
+    languages: [ruby, rails]
+    visible: true
+    order: 1
+    ---
+
+And here is my _config.yml file where I keep my settings:
+
+    # Your name to be displayed on your profile
+
+    Name: Jeff Wells
+
+    # The following three options specify
+    # a madlibs-style description of yourself.
+    # I ____________  at ____________________.
+    # I like ________________________________.
+
+    I: build things that make a difference
+    at: @azmicrocredit, @coderbaseio
+    I like: espresso, IPAs, cooking, fitness
+
+    # Add your twitter handle to display your most
+    # recent tweet and link to your twitter account.
+    # Your twitter account is the only contact information
+    # visible to the public.
+
+    Twitter: @jeffrwells
+
+    # Enter your Google+ id number to add an author meta tag to your posts.
+    # Why? It allows Google to put your Google+ photo next to search results,
+    # and generally ranks your posts higher on Google.
+    # https://plus.google.com/authorship
+
+    # Make sure to log in to Google+ and add 'www.coderbase.io' as a domain that
+    # you contribute to, or it won't work.
+
+    Google+: 112247879367781458018
+
+    # Want your Coderbase.io profile to resolve on your own domain?
+    # Enter your domain here e.g. mydomain.net or www.mydomain.net
+    # and then create a CNAME record with your DNS provider
+    # pointing to coderbase.herokuapp.com
+
+    Domain: jeffrwells.com
+
+    # You have the option to customize what you want to show on your main page.
+    # By default the posts tab is selected. You can input:
+    # 'posts', 'projects', or 'about'
+
+    Homepage: posts
 
 
+Also, everything is under version control without needing a service like PenFlip. Some of our users will use GitHub's pre-existing tools to Pull Request a typo fix for another user. Awesome!
 
-
-
-
-# Some Code
+Writing in the text editor in Markdown takes a little getting used to, but is very productive once you get the hang of it. All of this was designed to work well for developers and make the process of creating a portfolio as smooth as possible.
