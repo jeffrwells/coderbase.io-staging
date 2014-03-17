@@ -20,4 +20,4 @@ At Recruiting.com I worked in JavaScript and Backbone.js to build a recruitment 
 
 I am graduating with a Computer Science degree in the Spring of 2014.
 
-When I'm not programming, I cook, do olympic weightlifting, and drink espresso and craft IPAs. I'm from Portland, Oregon.
+When I'm not programming, I cook, do crossfit, and drink espresso and craft IPAs. I'm from Portland, Oregon.
