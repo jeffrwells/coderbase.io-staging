@@ -12,7 +12,7 @@ order: 2
 
 Crema is my first iPhone application. I built it to be able to find the best local coffee shops at home and while traveling. Users can search the foursquare API and add their favorite coffee shops, and other users can upvote them. There is a map and list view that allows you to see the best shops near your current location.
 
-It is still in progress but I plan to release it to the App Store. See the code on GitHub.
+I am using Parse and Facebook SDK to authenticate users and store data. It is still in progress but I plan to release it to the App Store. See the code on GitHub.
 
 ![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/loadingscreen.png)
 
