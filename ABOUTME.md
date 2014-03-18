@@ -6,7 +6,7 @@ focuses: []
 
 > Make an impact in the world.
 
-*If you want to get a feel for my work and code, see the [Coderbase project](http://jeffrwells.com/projects/coderbase). It is the portfolio platform that this was built on, and contains tons of details on the motivation for and implementation of the project.*
+**If you want to get a feel for my work and code, see the [Coderbase project](http://jeffrwells.com/projects/coderbase). It is the portfolio platform that this was built on, and contains tons of details on the motivation for and implementation of the project.**
 
 I learned to code less than two years ago but have come a long way. I learned by building a SaaS product that assists with recruitment in college fraternities and sororities. Within 6 months, I sold this software to a number of fraternity chapters around the country but have since shut it down.
 

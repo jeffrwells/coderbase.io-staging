@@ -14,7 +14,7 @@ Coderbase.io is a portfolio platform for developers. It seeks to create the idea
 
 One of the most interesting parts about it is that everything is driven through Markdown, YAML, and Git. There is no admin UI through the browser. When a user signs up through GitHub, a new repository is created on his/her GitHub account that contains all of the configurations and content.
 
-See below for further details and pictures. *Lots of code samples*
+See below for further details and pictures. **There are lots of code samples demonstrating how this platform works.**
 
 
 # Motivation
