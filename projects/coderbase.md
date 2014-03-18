@@ -28,9 +28,9 @@ We hope to replace a resume, blog, and GitHub profile with one single portfolio 
 
 # How it works
 
-Coderbase.io is built for developers, and is designed to work in tune with a developer's typical workflow. We recognized early on that
+Coderbase.io is built for developers, and is designed to work in tune with a developer's typical workflow. We recognized early on that the context switch required -- switching from a text editor to the browser, logging in, writing a post, and publishing it all in one sitting -- would be extremely prohibitive. We created a simpler workflow using Git and Markdown.
 
-When a user signs up through his/her GitHub account, a new repository called *coderbase.io* is created that hosts all of the portfolio's posts, projects, and configurations in markdown and YAML files. When the repository is modified and pushed to GitHub, a commit hook sends the changes over to us and we parse it to manage the portfolio.
+When a user signs up through his/her GitHub account, a new repository called *coderbase.io* is created that hosts all of the portfolio's posts, projects, and configurations in markdown and YAML files. When the repository is modified and pushed to GitHub, a commit hook sends the changes over to us and we parse it and update the portfolio accordingly.
 
 ![Newly created GitHub Repository](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/coderbase/coderbase-github-repo.png)
 
@@ -111,3 +111,285 @@ If you haven't already, you need to [try it out](https://coderbase.io). To see y
 # The Code
 
 The code for this platform is hosted in a private repository, but here I will highlight some of the code I am proud of.
+
+I am going to walk through some of the background details of this platform, from a user signing up to how posts and projects are updated.
+
+## Customizing YAML with StringyYAML
+
+We embed YAML frontmatter in our markdown files like I demonstrated above. When a user signs up we create a new Markdown file for each of his/her GitHub projects. In order to do this, we not only customize the name of the file, but also the values of all of the metadata keys in YAML.
+
+Ruby's Psych YAML library is good for parsing or writing pure YAML files, but is not built to deal with YAML inside of a string (which this file is until committed). I created a StringyYAML class that uses YAML but treats it like a string but escapes everything, and allows for updating the values by passing in a hash.
+
+    require 'yaml'
+
+    module StringyYAML
+      include YAML
+
+      class << self
+        # load to convert everything to strings
+        def load(content)
+          # escape double quotes
+          content.gsub! /\"/, '\"'
+          # wrap everything in double quotes
+          content.gsub! /^(.+?): (.*)/, '\1: "\2"'
+          YAML.safe_load(content)
+          # WYSIWYG!
+        end # end load
+
+        def update(string,first,second=nil)
+          str = string.dup
+          if !second.nil?
+            key,value = first, second
+            replace!(str,key,value)
+          else
+            hash = first
+            hash.each_pair do |key,value|
+              replace!(str,key,value)
+            end #end each_pair
+          end #end if/else
+          return str
+        end
+
+        private
+        def replace!(string, key, value)
+          string.gsub!(/^#{key}:(.+)/) do |match|
+            # match: String 'key: old_value'
+            # $1: String 'old_value'
+            match.gsub($1," #{value}" || ' ')
+          end
+        end
+
+      end
+    end
+
+This class has two components.
+
+The first is that we wanted our values to be parseable even if they were misformatted. For example, if a user provided...
+
+    ---
+    summary: ['this','that']
+    ---
+
+...the value that would be saved would be the string `"['this','that']"`. Natively, YAML would parse this as an array, and would create a `TypeError` in the application when `summary` expected a string. By escaping all double quotes, and then wrapping all values in quotes (as you can see in the RegExp above) we allow our YAML files to have a What You See Is What You Get response, and eliminate errors whenever possible. This avoids errors with single quotes or colons in a value as well, and values starting with symbols such as `Twitter: @jeffrwells` do not need to be wrapped in quotes. Integer, boolean and array values can be converted from a string when necessary.
+
+The second component is the `update` method. This allows us to take a template of the YAML data we will need and update it with the proper values for the user. For example, when a user signs up, we create a project with each repository from GitHub. Here is an excerpt of how we do that:
+
+    class CustomSeedRepoBuilder
+
+      def initialize(user)
+        @user = user
+        @repos = user.repos
+      end
+
+      def files
+        # customize user config...
+
+        # customize repos
+        @repos.each_with_index do |repo, index|
+          @files["#{repo.filename}"] = merge_project(repo)
+        end
+        # ...
+      end
+
+    private
+
+      def merge_project(repo)
+        StringyYAML.update(
+          SeedRepoTemplate.project,
+          {
+            title: repo.title,
+            permalink: repo.permalink,
+            description: repo.description,
+            homepage: repo.homepage,
+            visible: repo.visible,
+            languages: "[#{repo.languages.join(', ')}]"
+          }
+        ) << "\n#{repo.readme_markdown}"
+      end
+
+    end
+
+You can see that we pass the original string that we use as the template -- which is accessed with a class method on SeedRepoTemplate -- and update it by passing it a hash with the new values. We then copy exactly the README contents of the repository as a basis for a description like you are reading now.
+
+*As a note, we never expose contents of private repositories. The `repo.visible` value defaults to false for all private or collaborator repos.*
+
+
+## Parsing Commits
+
+This is an extensive process but I will show 3 of the key files that make this happen.
+
+When the user signs up we create a webhook on their new repository that sends commit data over to the application. When a commit comes in, we have the commit sha and url, along with some other data. Here is the trail it follows as it is processed:
+
+### Holding the commit information
+
+The first thing is to hold this commit information somewhere. The `CommitInformation` class parses the user information out of the commit url and has lazy instantiators for the data we might need (since the data needed will change depending on the commit and files affected). An instance of this class gets passed along as needed.
+
+    class CommitInformation
+
+      COMMIT_URL_REGEX = /.+\/(.+)\/(.+)(\/commit\/|\/git\/)/
+
+      def initialize(commit_sha, commit_url)
+        @commit_sha = commit_sha
+        @commit_url = commit_url
+
+        @commit_url.match COMMIT_URL_REGEX
+        @github_username = $1
+        @github_repo_name = $2
+      end
+
+      def files
+        @files ||= commit_obj.files
+      end
+
+      def conn
+        @conn ||= GithubConnection.new(user)
+      end
+
+      def commit_obj
+        # returns github gem commit object
+        @commit_obj ||= conn.get_commit(@commit_sha)
+      end
+
+      def tree_obj
+        # returns github gem tree object
+        @tree_obj ||= conn.get_tree(tree_sha)
+      end
+
+      def tree_sha
+        @tree_sha ||= commit_obj.commit.tree.sha
+      end
+
+      def user
+        @user ||= User.find_by(username: @github_username)
+      end
+    end
+
+The user can be found from the unique username in the commit url, and GithubConnection is our client for connecting to the Github API.
+
+### Sending the modified file to the right processing class
+
+Now that we can hold the information, we need to parse the files that are changed.
+
+    class CommitHookParser
+
+      def initialize(commit_sha, commit_url)
+        @commit_info = CommitInformation.new(commit_sha,commit_url)
+        self
+      end
+
+      def parse_commit!
+        @commit_info.files.each do |file|
+          match_file_name(file)
+        end
+
+        self
+      end
+
+
+    private
+
+      def match_file_name(file)
+        case file.filename
+          when POST_FILENAME_REGEX
+            PostProcessor.process!(@commit_info, file)
+          when PROJECT_FILENAME_REGEX
+            ProjectProcessor.process!(@commit_info, file)
+          when CONFIG_FILENAME_REGEX
+            ConfigProcessor.process!(@commit_info, file)
+          when ABOUTME_FILENAME_REGEX
+            PageProcessor.process!(@commit_info, file)
+          else
+            # nothing with other kinds of files
+        end
+      end
+
+    end
+
+After instantiating `CommitInformation`, it matches each file to the proper processer based on the file type.
+
+### Processing the commit data
+
+Here is what a processor looks like:
+
+    class PostProcessor
+
+      attr_accessor :file, :name, :commit
+
+      # class method is just a wrapper for instantiating the object
+      def self.process!(commit_info, file)
+        self.new(commit_info, file).process_file!
+      end
+
+      def initialize(commit_info, file)
+        @file = file
+        @commit_info = commit_info
+      end
+
+      def process_file!
+          case @file.status
+            when 'modified','added'
+              process_post
+            when 'renamed'
+              rename_post
+            when 'removed'
+              remove_post
+          end
+
+          self
+      end
+
+
+      def process_post
+        post = @commit.user.posts.find_or_initialize_by(filename: @file.filename)
+        post.fetch_and_update!(@file.sha)
+      end
+
+      # rename_post, remove_post, etc...
+
+    end
+
+Simple enough. It determines the action based on the git status of the file, and in this case, create or update the post. The responsibility of fetching the blob for the post and parsing it belongs to the `Post` class.
+
+### Fetching and updating
+
+First it uses the sha to fetch and decode the blob file from the GitHub API. `user.github` holds the API client and provides convenient methods like `get_blob`.
+
+    def fetch_and_update!(sha)
+      blob = user.github.get_blob(sha)
+      content = Base64.decode64(blob.body.content)
+      update_from_yaml!(content)
+    end
+
+Then the content is passed to `parse_yaml`, where the values are extracted and returned as a hash. Then the Post model's values are individually updated from the hash. Finally it is saved, and we don't expect any errors.
+
+    def update_from_yaml!(content)
+      data = parse_yaml(content)
+      #parse_yaml sets markdown, markdown is parsed in before_save
+      if data
+        self.title = data['title']
+        self.languages = data['languages'] || []
+        self.published = data['published'] || true
+        # etc
+        save!
+      end
+    end
+
+
+Here is a look at the `parse_yaml` method. It matches the content of the post to our YAML frontmatter regex, and sets the markdown and yaml accordingly. StringyYAML is used to load the values as pure strings in the WYSIWYG method I described above.
+
+    def parse_yaml(content)
+      if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
+        yaml = $1
+        self.markdown = $POSTMATCH
+
+        StringyYAML.load(yaml) rescue psych_syntax_error
+      else
+        self.markdown = ""
+        misformat_error
+      end
+
+    end
+
+But what happens if the post isn't correctly formatted? Since Coderbase.io does not have any administrative tools in the browser, and we cannot display an error in their text editor, we use a unique method. The `psych_syntax_error` and `misformat_error` methods add a code block onto the beginning of the post's content that describes that there was an error and sets the post to a draft. Then when the user goes to look at the post, they see the error displayed at the top. We've considered many options for notifying errors, but at present this is the smoothest. We do not want to create notifications or admin interfaces unless we absolutely have to, as it is very important that this tool works seamlessly into our users' current workflow.
+
+That is pretty much how the parsing works. Obviously there are edge cases and a lot more detail under the surface. Hopefully these were valuable code samples to see my coding style and abilities. All of this was test driven with RSpec. Tests are extremely important for this as it is difficult and slow to QA test and it is something that must work perfectly.
