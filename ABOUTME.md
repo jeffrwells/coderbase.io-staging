@@ -4,7 +4,7 @@
 focuses: []
 ---
 
-> Make an impact in the world.
+> Do work that matters.
 
 **If you want to get a feel for my work and code, see the [Coderbase project](http://jeffrwells.com/projects/coderbase). It is the portfolio platform that this was built on, and contains tons of code samples and details on the motivation for and implementation of the project.**
 
