@@ -392,4 +392,6 @@ Here is a look at the `parse_yaml` method. It matches the content of the post to
 
 But what happens if the post isn't correctly formatted? Since Coderbase.io does not have any administrative tools in the browser, and we cannot display an error in their text editor, we use a unique method. The `psych_syntax_error` and `misformat_error` methods add a code block onto the beginning of the post's content that describes that there was an error and sets the post to a draft. Then when the user goes to look at the post, they see the error displayed at the top. We've considered many options for notifying errors, but at present this is the smoothest. We do not want to create notifications or admin interfaces unless we absolutely have to, as it is very important that this tool works seamlessly into our users' current workflow.
 
-That is pretty much how the parsing works. Obviously there are edge cases and a lot more detail under the surface. Hopefully these were valuable code samples to see my coding style and abilities. All of this was test driven with RSpec. Tests are extremely important for this as it is difficult and slow to QA test and it is something that must work perfectly.
+That is pretty much how the parsing works. Obviously there are edge cases and a lot more detail under the surface. All of this was test driven with RSpec. Tests are extremely important for this as it is difficult and slow to QA test and it is something that must work perfectly.
+
+Hopefully these were valuable code samples to see my coding style and abilities!
