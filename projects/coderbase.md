@@ -216,7 +216,7 @@ You can see that we pass the original string that we use as the template -- whic
 
 ## Parsing Commits
 
-This is an extensive process but I will show 3 of the key files that make this happen.
+This is an extensive process but I will show the key files that make this happen.
 
 When the user signs up we create a webhook on their new repository that sends commit data over to the application. When a commit comes in, we have the commit sha and url, along with some other data. Here is the trail it follows as it is processed:
 
