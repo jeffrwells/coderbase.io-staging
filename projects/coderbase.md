@@ -279,6 +279,9 @@ Now that we can hold the information, we need to parse the files that are change
         self
       end
 
+
+    private
+
       def match_file_name(file)
         case file.filename
           when POST_FILENAME_REGEX
