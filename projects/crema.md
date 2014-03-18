@@ -14,6 +14,8 @@ Crema is my first iPhone application. I built it to be able to find the best loc
 
 I am using Parse and Facebook SDK to authenticate users and store data. It is still in progress but I plan to release it to the App Store. See the code on GitHub.
 
+The logo and all design work is my own, done in Adobe Illustrator.
+
 ![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/loadingscreen.png)
 
 ![](https://raw.github.com/jeffrwells/coderbase.io-staging/master/projects/photos/crema/map.png)
