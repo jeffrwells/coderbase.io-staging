@@ -114,11 +114,11 @@ The code for this platform is hosted in a private repository, but here I will hi
 
 I am going to walk through some of the background details of this platform, from a user signing up to how posts and projects are updated.
 
-## Customizing YAML with StringyYAML
+## Creating the custom repository
 
 We embed YAML frontmatter in our markdown files like I demonstrated above. When a user signs up we create a new Markdown file for each of his/her GitHub projects. In order to do this, we not only customize the name of the file, but also the values of all of the metadata keys in YAML.
 
-Ruby's Psych YAML library is good for parsing or writing pure YAML files, but is not built to deal with YAML inside of a string (which this file is until committed). I created a StringyYAML class that uses YAML but treats it like a string but escapes everything, and allows for updating the values by passing in a hash.
+Ruby's Psych YAML library is good for parsing or writing pure YAML files, but is not built to deal with YAML inside of a string (which this file is until committed). I created a StringyYAML class that uses YAML but treats it like a string. It also escapes everything, and allows for updating the values by passing in a hash.
 
     require 'yaml'
 
@@ -164,13 +164,7 @@ Ruby's Psych YAML library is good for parsing or writing pure YAML files, but is
 
 This class has two components.
 
-The first is that we wanted our values to be parseable even if they were misformatted. For example, if a user provided...
-
-    ---
-    summary: ['this','that']
-    ---
-
-...the value that would be saved would be the string `"['this','that']"`. Natively, YAML would parse this as an array, and would create a `TypeError` in the application when `summary` expected a string. By escaping all double quotes, and then wrapping all values in quotes (as you can see in the RegExp above) we allow our YAML files to have a What You See Is What You Get response, and eliminate errors whenever possible. This avoids errors with single quotes or colons in a value as well, and values starting with symbols such as `Twitter: @jeffrwells` do not need to be wrapped in quotes. Integer, boolean and array values can be converted from a string when necessary.
+The first is that we wanted our values to be parseable even if they were misformatted. For example, if a user provided ` summary: ['this','that']`, the value that would be saved would be the string `"['this','that']"`. Natively, YAML would parse this as an array, and would create a `TypeError` in the application when `summary` expected a string. By escaping all double quotes, and then wrapping all values in quotes (as you can see in the RegExp above) we allow our YAML files to have a What You See Is What You Get response, and eliminate errors whenever possible. This avoids errors with single quotes or colons in a value as well, and values starting with symbols such as `Twitter: @jeffrwells` do not need to be wrapped in quotes. Integer, boolean and array values can be converted from a string when necessary.
 
 The second component is the `update` method. This allows us to take a template of the YAML data we will need and update it with the proper values for the user. For example, when a user signs up, we create a project with each repository from GitHub. Here is an excerpt of how we do that:
 
@@ -209,7 +203,7 @@ The second component is the `update` method. This allows us to take a template o
 
     end
 
-You can see that we pass the original string that we use as the template -- which is accessed with a class method on SeedRepoTemplate -- and update it by passing it a hash with the new values. We then copy exactly the README contents of the repository as a basis for a description like you are reading now.
+Calling `files` creates a hash of files, including a project file for each GitHub repository. You can see that we pass the original string that we use as the template with `SeedRepoTemplate.project` -- a class method on SeedRepoTemplate that holds the value -- and update it by passing it a hash with the new values. We then copy exactly the README contents of the repository as a basis for a description like you are reading now. StringyYAML's `update` method also has a three-argument signature for updating a single value.
 
 *As a note, we never expose contents of private repositories. The `repo.visible` value defaults to false for all private or collaborator repos.*
 
@@ -284,9 +278,6 @@ Now that we can hold the information, we need to parse the files that are change
 
         self
       end
-
-
-    private
 
       def match_file_name(file)
         case file.filename
