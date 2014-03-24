@@ -6,7 +6,7 @@ published: true
 summary: Think about your users and when they need your product the most.
 ---
 
-I recently stumbled upon a litmus test for whether companies should pursue web or mobile first. I have since found it to be true.
+I have a simple theory for whether companies should pursue web or mobile first.
 
 Fred Wilson and Mark Suster have written impactful articles on the subject of mobile first (and web second) [here](http://avc.com/2010/09/mobile-first-web-second/) and [here](http://www.bothsidesofthetable.com/2012/01/28/web-second-mobile-first/) respectively. Fred mentions the power of mobile for engagement and Mark describes the pros of an integrated experience across all platforms.
 
