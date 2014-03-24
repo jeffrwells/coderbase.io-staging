@@ -303,42 +303,56 @@ After instantiating `CommitInformation`, it matches each file to the proper proc
 
 ### Processing the commit data
 
-Here is what a processor looks like:
+The processors use a template pattern. There is a Processor class from which the separate processor types inherit:
 
-    class PostProcessor
+    class Processor
 
-      attr_accessor :file, :name, :commit
+      attr_accessor :file, :commit
 
-      # class method is just a wrapper for instantiating the object
+      # class method wrapper
       def self.process!(commit_info, file)
-        self.new(commit_info, file).process_file!
+        processor = self.new(commit_info, file)
+        processor.process_file!
+        processor
       end
 
       def initialize(commit_info, file)
         @file = file
-        @commit_info = commit_info
+        @commit = commit_info
       end
 
       def process_file!
-          case @file.status
-            when 'modified','added'
-              process_post
-            when 'renamed'
-              rename_post
-            when 'removed'
-              remove_post
-          end
 
-          self
+        case @file.status
+          when 'modified','added'
+            process
+          when 'renamed'
+            rename
+          when 'removed'
+            remove
+        end
+
       end
 
+      # abstract methods
+      def process; end
 
-      def process_post
+      def rename; end
+
+      def remove; end
+
+    end
+
+Here is what a processor looks like:
+
+    class PostProcessor < Processor
+
+      def process
         post = @commit.user.posts.find_or_initialize_by(filename: @file.filename)
         post.fetch_and_update!(@file.sha)
       end
 
-      # rename_post, remove_post, etc...
+      # rename, remove, etc...
 
     end
 
